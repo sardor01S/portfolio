@@ -29,7 +29,6 @@ export function HeroSection() {
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(124,58,237,0.18),transparent_32%),radial-gradient(circle_at_85%_18%,rgba(59,130,246,0.16),transparent_24%),radial-gradient(circle_at_50%_100%,rgba(6,182,212,0.12),transparent_30%)]" />
       <motion.div animate={{ rotate: [0, 5, 0], scale: [1, 1.04, 1] }} transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }} className="absolute left-[-10%] top-[-10%] h-56 w-56 rounded-full bg-violet-500/20 blur-3xl" />
       <motion.div animate={{ y: [0, -24, 0], x: [0, 20, 0] }} transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }} className="absolute bottom-8 right-0 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl" />
-
       <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="max-w-2xl">
           <motion.div whileHover={{ y: -2, scale: 1.01 }} className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/8 px-4 py-2 text-sm text-slate-300 backdrop-blur-xl">
