@@ -14,7 +14,7 @@ export type Project = {
   stack: string[];
   github: string;
   demo: string;
-  image: StaticImageData;
+  image: string | StaticImageData;
 };
 
 export const projects: Project[] = [
