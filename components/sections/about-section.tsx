@@ -5,9 +5,9 @@ import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/components/providers/language-provider";
 
 const stats = [
-  { value: 24, label: "Projects Delivered" },
-  { value: 18, label: "Technologies" },
-  { value: 6, label: "Years Learning" },
+  { value: 5, label: "Projects Delivered" },
+  { value: 11, label: "Technologies" },
+  { value: 1, label: "Years Learning" },
 ];
 
 export function AboutSection() {

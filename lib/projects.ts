@@ -20,14 +20,14 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: 1,
-    title: "E-commerce Experience",
+    title: "NovaLearn Course-app",
     description:
       "A premium storefront with immersive product discovery, cart flows, and conversion-focused UI patterns.",
     category: "fullstack",
     stack: ["Next.js", "Redux Toolkit", "React Query", "REST API", "Tailwind CSS"],
-    github: "https://github.com",
-    demo: "https://example.com",
-    image: ecommerceImage,
+    github: "https://github.com/sardor01S/course-app",
+    demo: "https://course-app-wheat-alpha.vercel.app/",
+    image: "/images/course-project.jpg",
   },
   {
     id: 2,
@@ -35,10 +35,10 @@ export const projects: Project[] = [
     description:
       "A cinematic web app with rich content cards, smooth transitions, and a curated browsing experience.",
     category: "frontend",
-    stack: ["React", "TypeScript", "REST API"],
-    github: "https://github.com",
-    demo: "https://example.com",
-    image: movieImage,
+    stack: ["React", "TypeScript", "Vite"],
+    github: "https://github.com/sardor01S/todo-app",
+    demo: "https://todo-app-hnq1.vercel.app/",
+    image: "/images/todo-app.jpg",
   },
   {
     id: 3,
