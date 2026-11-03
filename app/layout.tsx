@@ -25,16 +25,18 @@ const themeScript = `
 `;
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sardor.dev"),
-  title: "Sardorbek Ismatov | Frontend Developer",
-  description: "Premium frontend developer portfolio with elegant UI, motion design, and polished product experiences.",
-  keywords: ["frontend developer", "next.js", "typescript", "portfolio", "motion design"],
-  alternates: { canonical: "https://sardor.dev" },
+  metadataBase: new URL("https://portfolio-opal-nine-k40mahwsvw.vercel.app/"),
+  title: "Sardorbek Ismatov | Junior Frontend Developer",
+  description:
+    "Junior Frontend Developer with a strong foundation in React, Next.js, JavaScript, and TypeScript. Explore personal projects and get in touch.",
+  keywords: ["junior frontend developer", "React", "Next.js", "TypeScript", "portfolio"],
+  alternates: { canonical: "https://portfolio-opal-nine-k40mahwsvw.vercel.app/" },
   openGraph: {
-    title: "Sardorbek Ismatov | Frontend Developer",
-    description: "Premium frontend developer portfolio with elegant UI, motion design, and polished product experiences.",
+    title: "Sardorbek Ismatov | Junior Frontend Developer",
+    description:
+      "Junior Frontend Developer with a strong foundation in React, Next.js, JavaScript, and TypeScript.",
     type: "website",
-    url: "https://sardor.dev",
+    url: "https://portfolio-opal-nine-k40mahwsvw.vercel.app/",
   },
 };
 
@@ -44,7 +46,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+    <html lang="uz" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>

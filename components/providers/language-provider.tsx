@@ -1,7 +1,13 @@
 "use client";
 
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { getLocaleFromStorage, messages, type Locale, type TranslationMessages } from "@/lib/i18n";
+import { createContext, useContext, useEffect, useMemo, useSyncExternalStore } from "react";
+import {
+  defaultLocale,
+  getLocaleFromStorage,
+  messages,
+  type Locale,
+  type TranslationMessages,
+} from "@/lib/i18n";
 
 type LanguageContextValue = {
   locale: Locale;
@@ -10,23 +16,41 @@ type LanguageContextValue = {
 };
 
 const LanguageContext = createContext<LanguageContextValue | undefined>(undefined);
+const localeChangeEvent = "portfolio-locale-change";
+
+function subscribeToLocale(onStoreChange: () => void) {
+  window.addEventListener("storage", onStoreChange);
+  window.addEventListener(localeChangeEvent, onStoreChange);
+  return () => {
+    window.removeEventListener("storage", onStoreChange);
+    window.removeEventListener(localeChangeEvent, onStoreChange);
+  };
+}
+
+function setStoredLocale(locale: Locale) {
+  window.localStorage.setItem("portfolio-locale", locale);
+  window.dispatchEvent(new Event(localeChangeEvent));
+}
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("en");
+  const locale = useSyncExternalStore(
+    subscribeToLocale,
+    getLocaleFromStorage,
+    (): Locale => defaultLocale,
+  );
 
   useEffect(() => {
-    setLocaleState(getLocaleFromStorage("en"));
-  }, []);
-
-  useEffect(() => {
-    window.localStorage.setItem("portfolio-locale", locale);
     document.documentElement.lang = locale;
+    document.title = messages[locale].siteTitle;
+    if (!window.localStorage.getItem("portfolio-locale")) {
+      window.localStorage.setItem("portfolio-locale", locale);
+    }
   }, [locale]);
 
   const value = useMemo(
     () => ({
       locale,
-      setLocale: setLocaleState,
+      setLocale: setStoredLocale,
       t: messages[locale],
     }),
     [locale],
