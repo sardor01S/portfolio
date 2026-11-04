@@ -53,7 +53,7 @@ export function ContactSection() {
     <section className="px-4 py-24 sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
-          <p className="text-sm uppercase tracking-[0.35em] text-cyan-400">{t.contactPage.eyebrow}</p>
+          <p className="text-sm uppercase tracking-[0.35em] text-sky-700 dark:text-cyan-300">{t.contactPage.eyebrow}</p>
           <h2 className="mt-3 text-3xl font-semibold text-slate-950 sm:text-4xl dark:text-white">{t.contactPage.title}</h2>
           <p className="mt-4 max-w-xl text-lg text-slate-600 dark:text-slate-300">{t.contactPage.subtitle}</p>
           <div className="mt-8 grid gap-4">

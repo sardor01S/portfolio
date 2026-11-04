@@ -79,7 +79,7 @@ export function Navbar() {
             className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-700 transition hover:border-sky-500 hover:text-sky-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 dark:border-slate-700 dark:text-slate-200 dark:hover:border-cyan-400 dark:hover:text-cyan-300"
             aria-label={theme === "dark" ? t.theme.switchToLight : t.theme.switchToDark}
           >
-            {theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
+            {theme === "light" ? <Sun size={17} /> : <Moon size={17} />}
           </button>
           <button
             type="button"

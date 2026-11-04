@@ -4,11 +4,13 @@
 :root {
   --background: #f5f8fc;
   --foreground: #0f172a;
+  color-scheme: light;
 }
 
 :root[data-theme="dark"] {
   --background: #080f1c;
   --foreground: #f8fafc;
+  color-scheme: dark;
 }
 
 html {

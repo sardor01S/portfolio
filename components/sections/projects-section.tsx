@@ -93,7 +93,7 @@ export function ProjectsSection() {
                 transition={{ duration: 0.35, delay: index * 0.05 }}
                 className="group flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_20px_60px_-45px_rgba(15,23,42,0.35)] transition duration-300 hover:-translate-y-1 hover:border-sky-300 hover:shadow-[0_24px_70px_-40px_rgba(14,116,144,0.25)] dark:border-slate-800 dark:bg-slate-900 dark:hover:border-cyan-400/40"
               >
-                <div className="relative aspect-[16/9] overflow-hidden bg-slate-100 dark:bg-slate-800">
+                <div className="relative aspect-video overflow-hidden bg-slate-100 dark:bg-slate-800">
                   <Image
                     src={project.image}
                     alt={`${project.title} ${t.projectsPage.screenshotAlt}`}

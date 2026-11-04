@@ -13,8 +13,8 @@ const themeScript = `
 (function(){
   try {
     const storedTheme = localStorage.getItem('portfolio-theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = storedTheme === 'light' || storedTheme === 'dark' ? storedTheme : (prefersDark ? 'dark' : 'light');
+    const theme = storedTheme === 'light' || storedTheme === 'dark' ? storedTheme : 'dark';
+    if (storedTheme !== theme) localStorage.setItem('portfolio-theme', theme);
     document.documentElement.classList.toggle('dark', theme === 'dark');
     document.documentElement.style.colorScheme = theme;
     document.documentElement.setAttribute('data-theme', theme);

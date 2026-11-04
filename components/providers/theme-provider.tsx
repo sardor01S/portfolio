@@ -12,23 +12,37 @@ type ThemeContextValue = {
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 const themeChangeEvent = "portfolio-theme-change";
 
-function getThemeSnapshot(): Theme {
+function getStoredTheme(): Theme | null {
   const storedTheme = window.localStorage.getItem("portfolio-theme");
-  if (storedTheme === "dark" || storedTheme === "light") return storedTheme;
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  return storedTheme === "dark" || storedTheme === "light" ? storedTheme : null;
+}
+
+function getThemeSnapshot(): Theme {
+  return getStoredTheme() ?? "dark";
+}
+
+function applyTheme(theme: Theme) {
+  document.documentElement.classList.toggle("dark", theme === "dark");
+  document.documentElement.style.colorScheme = theme;
+  document.documentElement.setAttribute("data-theme", theme);
 }
 
 function subscribeToTheme(onStoreChange: () => void) {
-  window.addEventListener("storage", onStoreChange);
+  const handleStorage = (event: StorageEvent) => {
+    if (event.key === "portfolio-theme" || event.key === null) onStoreChange();
+  };
+
+  window.addEventListener("storage", handleStorage);
   window.addEventListener(themeChangeEvent, onStoreChange);
   return () => {
-    window.removeEventListener("storage", onStoreChange);
+    window.removeEventListener("storage", handleStorage);
     window.removeEventListener(themeChangeEvent, onStoreChange);
   };
 }
 
 function setStoredTheme(theme: Theme) {
   window.localStorage.setItem("portfolio-theme", theme);
+  applyTheme(theme);
   window.dispatchEvent(new Event(themeChangeEvent));
 }
 
@@ -36,9 +50,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const theme = useSyncExternalStore(subscribeToTheme, getThemeSnapshot, (): Theme => "dark");
 
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
-    document.documentElement.style.colorScheme = theme;
-    document.documentElement.setAttribute("data-theme", theme);
+    const storedTheme = getStoredTheme();
+    const activeTheme = storedTheme ?? theme;
+    if (!storedTheme) window.localStorage.setItem("portfolio-theme", activeTheme);
+    applyTheme(activeTheme);
   }, [theme]);
 
   const value = useMemo(

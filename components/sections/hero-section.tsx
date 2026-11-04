@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Code2 } from "lucide-react";
@@ -10,12 +11,12 @@ export function HeroSection() {
 
   return (
     <section className="relative px-4 pb-20 pt-20 sm:px-6 sm:pb-28 sm:pt-28 lg:px-8 lg:pb-32">
-      <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
+      <div className="mx-auto grid max-w-7xl items-center gap-8 md:grid-cols-[minmax(0,1.1fr)_minmax(240px,0.9fr)] md:gap-10 lg:gap-14">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55 }}
-          className="max-w-3xl"
+          className="max-w-3xl min-w-0"
         >
           <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-sky-200 bg-white/80 px-4 py-2 text-sm font-medium text-sky-800 shadow-sm dark:border-sky-400/20 dark:bg-slate-900/80 dark:text-sky-300">
             <Code2 size={16} />
@@ -47,36 +48,26 @@ export function HeroSection() {
           </div>
         </motion.div>
 
-        <motion.aside
+        <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.1 }}
-          aria-label={t.hero.focusAriaLabel}
-          className="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_24px_70px_-45px_rgba(15,23,42,0.35)] sm:p-8 dark:border-slate-800 dark:bg-slate-900"
+          className="mx-auto w-full max-w-[340px] sm:max-w-[390px] md:max-w-none lg:mx-auto lg:max-w-[460px]"
         >
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-sky-700 dark:text-cyan-300">
-            {t.hero.focusLabel}
-          </p>
-          <h2 className="mt-3 text-2xl font-semibold text-slate-950 dark:text-white">
-            {t.hero.focusTitle}
-          </h2>
-          <div className="mt-6 flex flex-wrap gap-2">
-            {t.hero.focusAreas.map((area) => (
-              <span
-                key={area}
-                className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm font-medium text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
-              >
-                {area}
-              </span>
-            ))}
+          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] border border-cyan-400/50 bg-slate-900 shadow-[0_0_0_1px_rgba(34,211,238,0.12),0_24px_70px_-32px_rgba(6,182,212,0.42)]">
+            <Image
+              src="/images/profotomee.png"
+              alt={t.hero.portraitAlt}
+              fill
+              priority
+              sizes="(max-width: 767px) 85vw, (max-width: 1279px) 40vw, 460px"
+              onError={(event) => {
+                console.error("Failed to load hero portrait:", event.currentTarget.src);
+              }}
+              className="z-10 object-cover object-top"
+            />
           </div>
-          <div className="mt-7 border-t border-slate-200 pt-5 dark:border-slate-800">
-            <p className="text-sm text-slate-500 dark:text-slate-400">{t.hero.educationLabel}</p>
-            <p className="mt-1 font-medium text-slate-900 dark:text-slate-100">
-              {t.hero.education}
-            </p>
-          </div>
-        </motion.aside>
+        </motion.div>
       </div>
     </section>
   );

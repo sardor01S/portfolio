@@ -32,6 +32,7 @@ export type TranslationMessages = {
   hero: {
     availability: string;
     role: string;
+    portraitAlt: string;
     focusAriaLabel: string;
     description: string;
     focusLabel: string;
@@ -160,6 +161,7 @@ export const messages = {
     hero: {
       availability: "Birinchi Frontend Developer ishimni izlayapman",
       role: "Junior Frontend Developer",
+      portraitAlt: "Sardorbek Ismatovning professional portreti",
       focusAriaLabel: "Kasbiy yo‘nalish",
       description:
         "React, Next.js, JavaScript va TypeScript bo‘yicha mustahkam bilimga ega Junior Frontend Developer. Najot Ta'lim’da Frontend React kursini tamomlaganman. Shaxsiy veb-ilovalar yaratish, REST API bilan ishlash, autentifikatsiya va moslashuvchan interfeyslar ishlab chiqish tajribam bor. Professional jamoaga qo‘shilib, haqiqiy loyihalarga hissa qo‘shish va mahoratimni oshirishga intilaman.",
@@ -283,6 +285,7 @@ export const messages = {
     hero: {
       availability: "Seeking my first Frontend Developer role",
       role: "Junior Frontend Developer",
+      portraitAlt: "Professional portrait of Sardorbek Ismatov",
       focusAriaLabel: "Professional focus",
       description:
         "Junior Frontend Developer with a strong foundation in React, Next.js, JavaScript, and TypeScript. Completed Frontend React training at Najot Ta'lim. Experienced in building personal web applications, integrating REST APIs, implementing authentication, and developing responsive user interfaces. Eager to join a professional development team, contribute to real-world projects, and continuously improve my skills.",
@@ -406,6 +409,7 @@ export const messages = {
     hero: {
       availability: "Ищу первую работу Frontend Developer",
       role: "Junior Frontend Developer",
+      portraitAlt: "Профессиональный портрет Sardorbek Ismatov",
       focusAriaLabel: "Профессиональное направление",
       description:
         "Начинающий Frontend Developer с хорошей базой по React, Next.js, JavaScript и TypeScript. Прошёл курс Frontend React в Najot Ta'lim. Создаю личные веб-приложения, работаю с REST API, реализую аутентификацию и адаптивные интерфейсы. Хочу присоединиться к команде разработчиков, участвовать в настоящих проектах и постоянно развивать навыки.",
