@@ -3,9 +3,11 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, Send } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
-import { FormEvent, useState } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import emailjs from "@emailjs/browser";
 import { useLanguage } from "@/components/providers/language-provider";
+
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 const contacts = [
   { key: "email", value: "sismatov811@gmail.com", icon: <Mail size={18} />, href: "mailto:sismatov811@gmail.com", external: false },
@@ -17,15 +19,18 @@ export function ContactSection() {
   const { t } = useLanguage();
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "validation" | "error">("idle");
+  const isSubmitting = useRef(false);
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    if (
-      !form.name.trim() ||
-      !form.subject.trim() ||
-      !form.message.trim() ||
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)
-    ) {
+    if (isSubmitting.current) return;
+
+    const name = form.name.trim();
+    const email = form.email.trim();
+    const subject = form.subject.trim();
+    const message = form.message.trim();
+
+    if (!name || !email || !subject || !message || !emailPattern.test(email)) {
       setStatus("validation");
       return;
     }
@@ -35,17 +40,27 @@ export function ContactSection() {
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
     if (!serviceId || !templateId || !publicKey) {
+      console.error("EmailJS is not configured. Check the NEXT_PUBLIC_EMAILJS_* environment variables.");
       setStatus("error");
       return;
     }
 
+    isSubmitting.current = true;
     setStatus("loading");
     try {
-      await emailjs.send(serviceId, templateId, { from_name: form.name, from_email: form.email, subject: form.subject, message: form.message }, publicKey);
+      await emailjs.send(
+        serviceId,
+        templateId,
+        { from_name: name, from_email: email, subject, message },
+        { publicKey },
+      );
       setStatus("success");
       setForm({ name: "", email: "", subject: "", message: "" });
-    } catch {
+    } catch (error) {
+      console.error("EmailJS failed to send the contact form:", error);
       setStatus("error");
+    } finally {
+      isSubmitting.current = false;
     }
   };
 
